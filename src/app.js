@@ -1,12 +1,14 @@
 const Munros = require('./models/munros.js')
-const MunrosView = require('./views/munros_view.js')
-const url = ()
+const MunrosListView = require('./views/munros_list_view.js')
+const url = ('https://munroapi.herokuapp.com/munros')
 
 document.addEventListener('DOMContentLoaded', () =>{
   console.log('Javascript Loaded')
-  const munrosView = new MunrosView()
-  munrosView.bindEvents()
+
+  const selectedContainer = document.querySelector('div#munros')
+  const munrosListView = new MunrosListView(selectedContainer)
+  munrosListView.bindEvents()
 
   const munros = new Munros(url)
-  munros.bindEvents()
+  munros.getData()
 })
